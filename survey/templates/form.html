@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">Form</h1>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/form" method="post">
+      <!-- TODO -->
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control w-25" name="name" id="name" placeholder="Name">
+          <span class="errors" id="error-msg1"></span>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="role" class="col-sm-2 col-form-label">Select Role</label>
+        <div class="col-sm-10">
+          <select class="form-control w-25" name="role" id="role">
+            <option disabled selected value="">Role</option>
+            <option value="Organizer">Organizer</option>
+            <option value="Volunteer">Volunteer</option>
+            <option value="Participant">Participant</option>
+            <option value="Counselor">Counselor</option>
+          </select>
+          <span class="errors" id="error-msg2"></span>
+        </div>
+      </div>
+
+      <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Select Club</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="club" id="club1" value="Sports">
+              <label class="form-check-label" for="club1">
+                Sports
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="club" id="club2" value="Health and Nutrition">
+              <label class="form-check-label" for="club2">
+                Health & Nutrition
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="club" id="club3" value="Arts and Music">
+              <label class="form-check-label" for="club3">
+                Arts & Music
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="club" id="club4" value="Science and Technology">
+              <label class="form-check-label" for="club4">
+                Science & Technology
+              </label>
+            </div>
+            <span class="errors" id="error-msg3"></span>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+
+    <script>
+
+      /* TODO */
+
+      document.querySelector('form').onsubmit = function() {
+        let flag = true;
+
+        if (!document.querySelector('input[type=text]').value) {
+          document.getElementById("error-msg1").textContent = "You must provide your Name!";
+          flag = false;
+        }
+
+        if (!document.querySelector('select').value) {
+          document.getElementById("error-msg2").textContent = "You must select Role!";
+          flag = false;
+        }
+
+        var radios = document.querySelectorAll('input[type="radio"]:checked');
+        var value = radios.length > 0 ? radios[0].value : "";
+        if(!value) {
+          document.getElementById("error-msg3").textContent = "You must select Club!";
+          flag = false;
+        }
+
+        return flag ? true : false;
+      }
+
+    </script>
+
+{% endblock %}

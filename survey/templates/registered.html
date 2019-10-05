@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <h1>Sheet</h1>
+    {% if not result %}
+        <h4>No data available yet!</h4>
+
+    {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Club</th>
+                  <th scope="col">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in result %}
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
